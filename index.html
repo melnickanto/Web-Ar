@@ -12,7 +12,7 @@
       embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
     >
-      <!-- NFT marker using your QR code dataset -->
+      <!-- NFT marker using your QR dataset -->
       <a-nft
         type="nft"
         url="qr-marker"
@@ -21,8 +21,8 @@
         smoothTolerance="0.01"
         smoothThreshold="5"
       >
-        <!-- 3D content shown on top of QR code -->
-        <a-box position="0 0.5 0" material="color: blue;"></a-box>
+        <!-- Example 3D object -->
+        <a-box position="0 0.5 0" depth="0.5" height="0.5" width="0.5" material="color: blue;"></a-box>
       </a-nft>
 
       <!-- Camera -->
