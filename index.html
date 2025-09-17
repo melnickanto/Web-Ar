@@ -2,9 +2,9 @@
   <head>
     <title>WebAR with QR NFT Marker</title>
     <!-- A-Frame -->
-    <!--script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script-->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <!-- AR.js with NFT support -->
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/3.3.2/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene
@@ -12,10 +12,10 @@
       embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;"
     >
-      <!-- NFT marker using your QR dataset -->
+      <!-- NFT marker (make sure qr-marker.* files are inside /assets/qr-marker) -->
       <a-nft
         type="nft"
-        url="qr-marker"
+        url="assets/qr-marker"
         smooth="true"
         smoothCount="10"
         smoothTolerance="0.01"
@@ -30,6 +30,3 @@
     </a-scene>
   </body>
 </html>
-
-
-
