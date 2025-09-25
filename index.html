@@ -4,7 +4,7 @@
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!-- AR.js with NFT support -->
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/3.3.2/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene
@@ -15,7 +15,7 @@
       <!-- NFT marker using your QR dataset -->
       <a-nft
         type="nft"
-        url="qr-marker"
+        url="./qr-marker"   <!-- make sure qr-marker.fset, qr-marker.fset3, qr-marker.iset exist here -->
         smooth="true"
         smoothCount="10"
         smoothTolerance="0.01"
