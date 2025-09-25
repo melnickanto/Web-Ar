@@ -1,69 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>WebXR AR Cube</title>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/webxr/ARButton.js"></script>
+    <title>WebAR with QR NFT Marker</title>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- AR.js with NFT support -->
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/3.3.2/aframe/build/aframe-ar-nft.js"></script>
   </head>
-  <body style="margin:0; overflow:hidden;">
-    <script>
-      let camera, scene, renderer;
-      let controller;
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;"
+    >
+      <!-- NFT marker using your QR dataset -->
+      <a-nft
+        type="nft"
+        url="qr-marker"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="5"
+      >
+        <!-- Example 3D object -->
+        <a-box position="0 0.5 0" depth="0.5" height="0.5" width="0.5" material="color: blue;"></a-box>
+      </a-nft>
 
-      init();
-      animate();
-
-      function init() {
-        // Renderer
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.xr.enabled = true;
-        document.body.appendChild(renderer.domElement);
-
-        // AR Button
-        document.body.appendChild(
-          ARButton.createButton(renderer, { requiredFeatures: ['hit-test'] })
-        );
-
-        // Scene
-        scene = new THREE.Scene();
-
-        // Camera
-        camera = new THREE.PerspectiveCamera(
-          70,
-          window.innerWidth / window.innerHeight,
-          0.01,
-          20
-        );
-
-        // Light
-        const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-        scene.add(light);
-
-        // Controller (to handle tap/select events)
-        controller = renderer.xr.getController(0);
-        controller.addEventListener('select', onSelect);
-        scene.add(controller);
-      }
-
-      function onSelect() {
-        // Create cube when user taps
-        const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1); // 10cm cube
-        const material = new THREE.MeshPhongMaterial({ color: 0x44aa88 });
-        const cube = new THREE.Mesh(geometry, material);
-
-        // Place cube in front of tap position
-        cube.position.set(0, 0, -0.5).applyMatrix4(controller.matrixWorld);
-
-        scene.add(cube);
-      }
-
-      function animate() {
-        renderer.setAnimationLoop(() => {
-          renderer.render(scene, camera);
-        });
-      }
-    </script>
+      <!-- Camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
   </body>
 </html>
